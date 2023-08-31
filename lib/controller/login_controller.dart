@@ -14,13 +14,14 @@ void loginApi() async{
   loading.value=true;
   var url= "https://reqres.in/api/login";
   try{
+    Map mapData={
+      'email' : emailController.value.text,
+      'password': passwordController.value.text
+
+    };
 
     final response= await http.post(Uri.parse(url),
-        body: {
-          'email' : emailController.value.text,
-          'password': passwordController.value.text
-
-        },
+        body:jsonEncode(mapData)
     );
     var data= jsonDecode(response.body);
 
